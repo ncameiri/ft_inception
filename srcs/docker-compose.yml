@@ -1,0 +1,11 @@
+services:
+
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+    image: mariadb
+    container_name: mariadb
+    #Temporario para testes
+    ports:
+      - "3306:3306"
+    #########################
