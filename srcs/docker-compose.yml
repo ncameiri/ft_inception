@@ -9,3 +9,15 @@ services:
     ports:
       - "3306:3306"
     #########################
+    volumes:
+      - volume_mariadb:/var/lib/mysql
+    restart: on-failure
+
+volumes:
+  volume_mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./requirements/mariadb/data
+      #allow to add an existent folder
+      o: bind
