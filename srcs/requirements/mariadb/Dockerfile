@@ -1,4 +1,4 @@
-FROM debian:stable
+FROM debian:stable-20230411
 RUN apt update
 RUN apt install mariadb-server -y
 COPY ./tools .

@@ -1,4 +1,4 @@
-FROM debian:stable
+FROM debian:stable-20230411
 RUN apt update
 RUN apt install wget -y
 RUN apt install php -y
@@ -15,6 +15,14 @@ RUN chmod +x start_script.sh
 WORKDIR wordpress
 RUN apt install  php  php-mysql php-common libapache2-mod-php php-cli php-fpm -y
 RUN mkdir /run/php
+
+
+RUN cp -R /wordpress /var/www/html/
+RUN chown -R www-data:www-data /var/www/html/wordpress/
+RUN chmod -R 755 /var/www/html/wordpress/
+
+
+
 #wordpress
 #ENV SERVERNAME="localhost"
 #https://www.digitalocean.com/community/tutorials/install-wordpress-on-ubuntu

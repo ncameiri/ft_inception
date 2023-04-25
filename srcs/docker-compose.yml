@@ -8,6 +8,9 @@ services:
     volumes:
       - volume_mariadb:/var/lib/mysql
     restart: on-failure
+    environment:
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
   
   wordpress:
     build:
