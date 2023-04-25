@@ -11,6 +11,7 @@ services:
     environment:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - WP_DBNAME=${WP_DBNAME}
   
   wordpress:
     build:
@@ -19,7 +20,25 @@ services:
     container_name: wordpress
     restart: on-failure
     ports:
+      - "8080:80"
+    environment:
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - WP_DBNAME=${WP_DBNAME}
+    depends_on:
+      - mariadb
+    restart: on-failure
+  
+  nginx:
+    build:
+      context: ./requirements/nginx
+    image: nginx
+    depends_on:
+      - wordpress
+    ports:
       - "80:80"
+    restart: on-failure
+    
 
 volumes:
   volume_mariadb:

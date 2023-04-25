@@ -3,10 +3,13 @@ service mariadb start
 
 mariadb <<EOF
 CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';
+FLUSH PRIVILEGES;
 --substituir o mydb pela bd necessária ao wordpress
-GRANT ALL PRIVILEGES ON mydb.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION;
+CREATE DATABASE IF NOT EXISTS $WP_DBNAME;
+GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%';
 FLUSH PRIVILEGES;
 EOF
+
 sleep 1
 
 service mariadb stop

@@ -1,14 +1,14 @@
 <?php
-define( 'DB_NAME', 'mydb' );
+define( 'DB_NAME', getenv('WP_DBNAME') );
 
 /** Database username */
-define( 'DB_USER', 'root' );
+define( 'DB_USER', getenv('MYSQL_USER') );
 
 /** Database password */
-define( 'DB_PASSWORD', 'password' );
+define( 'DB_PASSWORD', getenv('MYSQL_ROOT_PASSWORD') );
 
 /** Database hostname */
-define( 'DB_HOST', 'mariadb' );
+define( 'DB_HOST', 'mariadb:3306' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -68,7 +68,7 @@ define( 'WP_DEBUG', true );
 
 /** Absolute path to the WordPress directory. */
 if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', __DIR__ . '/' );
+	define( 'ABSPATH', dirname( __FILE__ ) . '/' );
 }
 
 /** Sets up WordPress vars and included files. */
