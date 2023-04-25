@@ -5,12 +5,15 @@ services:
       context: ./requirements/mariadb
     image: mariadb
     container_name: mariadb
-    #Temporario para testes
-    ports:
-      - "3306:3306"
-    #########################
     volumes:
       - volume_mariadb:/var/lib/mysql
+    restart: on-failure
+  
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+    image: wordpress
+    container_name: wordpress
     restart: on-failure
 
 volumes:
