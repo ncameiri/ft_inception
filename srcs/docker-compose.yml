@@ -8,10 +8,13 @@ services:
     volumes:
       - volume_mariadb:/var/lib/mysql
     restart: on-failure
+    networks:
+      - docker_network
     environment:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - WP_DBNAME=${WP_DBNAME}
+    
   
   wordpress:
     build:
@@ -21,6 +24,8 @@ services:
     restart: on-failure
     ports:
       - "8080:80"
+    networks:
+      - docker_network
     environment:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
@@ -35,8 +40,10 @@ services:
     image: nginx
     depends_on:
       - wordpress
+    networks:
+      - docker_network
     ports:
-      - "80:80"
+      - "443:443"
     restart: on-failure
     
 
@@ -48,3 +55,6 @@ volumes:
       device: ./requirements/mariadb/data
       #allow to add an existent folder
       o: bind
+
+networks:
+  docker_network:
