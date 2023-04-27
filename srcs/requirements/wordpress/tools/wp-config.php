@@ -1,20 +1,20 @@
 <?php
-define( 'DB_NAME', getenv('WP_DBNAME') );
+define( 'DB_NAME', 'WP_DBNAME' );
 
 /** Database username */
-define( 'DB_USER', getenv('MYSQL_USER') );
+define( 'DB_USER', 'MYSQL_USER' );
 
 /** Database password */
-define( 'DB_PASSWORD', getenv('MYSQL_ROOT_PASSWORD') );
+define( 'DB_PASSWORD', 'MYSQL_ROOT_PASSWORD' );
 
 /** Database hostname */
-define( 'DB_HOST', 'mariadb' );
+define( 'DB_HOST', 'mariadb:3306' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
 
 /** The database collate type. Don't change this if in doubt. */
-define( 'DB_COLLATE', '' );
+//define( 'DB_COLLATE', '' );
 
 /**#@+
  * Authentication unique keys and salts.

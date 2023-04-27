@@ -21,9 +21,9 @@ services:
       context: ./requirements/wordpress
     image: wordpress
     container_name: wordpress
+    volumes:
+      - volume_wordpress:/var/www/wordpress
     restart: on-failure
-    ports:
-      - "8080:80"
     networks:
       - docker_network
     environment:
@@ -38,6 +38,7 @@ services:
     build:
       context: ./requirements/nginx
     image: nginx
+    container_name: nginx
     depends_on:
       - wordpress
     networks:
@@ -54,6 +55,13 @@ volumes:
       type: none
       device: ./requirements/mariadb/data
       #allow to add an existent folder
+      o: bind
+  
+  volume_wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./requirements/wordpress/data
       o: bind
 
 networks:
