@@ -1,7 +1,10 @@
 FROM debian:stable-20230411
 RUN apt update
 RUN apt install wget -y
-RUN apt install php php-fpm -y
+
+#https://make.wordpress.org/hosting/handbook/server-environment/
+RUN apt install php php-fpm php-mysqli  -y
+
 RUN apt install make -y
 RUN apt install net-tools -y
 RUN wget https://wordpress.org/latest.tar.gz
@@ -17,18 +20,13 @@ RUN chmod +x start_script.sh
 
 RUN cp wp-config.php /wordpress
 
-
-WORKDIR wordpress
+#WORKDIR wordpress
 #RUN apt install  php  php-mysql php-common libapache2-mod-php php-cli php-fpm -y
 RUN mkdir /run/php
-
-
+RUN useradd -ms /bin/bash nginx
 #RUN cp -R /wordpress /var/www/html/
 #RUN chown -R www-data:www-data /var/www/html/wordpress/
 #RUN chmod -R 755 /var/www/html/wordpress/
-
-
-
 
 #wordpress
 #ENV SERVERNAME="localhost"
