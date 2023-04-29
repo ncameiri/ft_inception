@@ -13,10 +13,10 @@ RUN tar -xzvf latest.tar.gz
 COPY ./tools .
 COPY ./conf .
 RUN chmod +x start_script.sh
-
 RUN mkdir /run/php
 
 RUN mkdir -p /var/www/wordpress
+RUN cp wp-config.php /var/www/wordpress
 RUN cp -r /wordpress/* /var/www/wordpress/
 
 ENTRYPOINT ["bash","-c","/start_script.sh"]
