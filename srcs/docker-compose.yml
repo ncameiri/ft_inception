@@ -55,7 +55,7 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ./requirements/mariadb/data
+      device: /home/ncameiri/data/mariadb
       #allow to add an existent folder
       o: bind
   
@@ -63,7 +63,7 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ./requirements/wordpress/data
+      device: /home/ncameiri/data/wordpress
       o: bind
 
 networks:
