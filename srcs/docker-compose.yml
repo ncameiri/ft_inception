@@ -41,6 +41,8 @@ services:
     container_name: nginx
     depends_on:
       - wordpress
+    volumes:
+      - volume_wordpress:/var/www/wordpress
     networks:
       - docker_network
     ports:
